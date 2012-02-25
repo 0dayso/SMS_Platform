@@ -1,0 +1,17 @@
+
+#login_div{
+	padding: 0; margin:0; width:98px; height:40px; display:block; } 
+	
+#reset_div{
+	padding: 0; margin:0; width:83px; height:40px; display:block; }
+	
+#login {background: url("../images/gui2_onling_11.jpg");}
+
+#login:hover {background: url("../images/gui2_onling_11_on.jpg");}
+
+#reset {background: url("../images/gui2_onling_09.jpg");}
+
+#reset:hover {background: url("../images/gui2_onling_09_on.jpg");}
+
+
+

@@ -1,0 +1,89 @@
+TABLE {
+	BORDER-TOP: 0px; BORDER-LEFT: 0px; BORDER-BOTTOM: 2px;
+}
+SELECT {
+	FONT-SIZE: 12px; COLOR: #000000; BACKGROUND-COLOR: #e0e2f1
+}
+
+TEXTAREA {
+	FONT-SIZE: 12px
+}
+INPUT {
+	FONT-SIZE: 12px;
+	FONT-FAMILY: 'Verdana'
+}
+SELECT {
+	FONT-SIZE: 12px
+}
+TD {
+	BORDER-RIGHT: 1px; BORDER-TOP: 0px; FONT-SIZE: 12px; line-height:18px;
+}
+.b {
+	BACKGROUND: #18517B
+}
+.c {
+	BACKGROUND: #52799C;
+	color:#000000;
+}
+.left_over {
+	BACKGROUND: #f0f0f0
+}
+.right_over {
+	BACKGROUND:#103C5A;
+}
+.head {
+	FONT-WEIGHT: bold; BACKGROUND: #294D63; COLOR: #ffffff; padding-left:20px;
+}
+.head TD {
+	COLOR: #ffffff
+}
+.head A {
+	COLOR: #ffffff
+}
+.head_2 {
+	BACKGROUND: #ced4e8
+}
+.head_2 TD {
+	COLOR: #000000
+}
+.hr {
+	BORDER-RIGHT: 0px; BORDER-TOP: #739ace 1px solid; BORDER-LEFT: 0px; BORDER-BOTTOM: 0px
+}
+.bold {
+	FONT-WEIGHT: bold
+}
+.smalltxt {
+	FONT-SIZE: 12px; COLOR: #000000; FONT-FAMILY: Tahoma, Verdana
+}
+.i_table {
+	BORDER-RIGHT: #739ace 1px solid; BORDER-TOP: #739ace 1px solid; BACKGROUND: #dee3ef; BORDER-LEFT: #739ace 1px solid; BORDER-BOTTOM: #739ace 1px solid
+}
+.j_table {
+	BORDER-RIGHT: #fff 1px solid; BORDER-TOP: #fff 1px solid; BACKGROUND: #739ace; BORDER-LEFT: #fff 1px solid; COLOR: #fff; BORDER-BOTTOM: #fff 1px solid
+}
+
+#pagebar {
+	PADDING-RIGHT: 2px; PADDING-LEFT: 2px; FONT-SIZE: 12px; PADDING-BOTTOM: 2px; MARGIN: 8px; COLOR: #aaa; PADDING-TOP: 2px; TEXT-ALIGN: right
+}
+#pagebar UL {
+	DISPLAY: inline
+}
+#pagebar LI {
+	PADDING-RIGHT: 4px; DISPLAY: inline; PADDING-LEFT: 4px; PADDING-BOTTOM: 1px; PADDING-TOP: 1px; LIST-STYLE-TYPE: none
+}
+#admin_div {
+	MARGIN: 150px auto
+}
+#messagebox {
+	BORDER-RIGHT: #739ace 1px solid; PADDING-RIGHT: 1px; BORDER-TOP: #739ace 1px solid; MARGIN-TOP: 150px; PADDING-LEFT: 1px; BACKGROUND: #faf8ed; PADDING-BOTTOM: 1px; BORDER-LEFT: #739ace 1px solid; WIDTH: 500px; PADDING-TOP: 1px; BORDER-BOTTOM: #739ace 1px solid
+}
+#messagebox-title {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; FONT-WEIGHT: bold; PADDING-BOTTOM: 5px; COLOR: #fff; PADDING-TOP: 5px; BACKGROUND-COLOR: #739ace; TEXT-ALIGN: left
+}
+#messagebox-content {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 20px; COLOR: #227fb7; PADDING-TOP: 10px; BACKGROUND-COLOR: #fff; TEXT-ALIGN: left
+}
+#messagebox-bottom {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; COLOR: #fff; PADDING-TOP: 3px; BACKGROUND-COLOR: #ced4e8; TEXT-ALIGN: center
+}
+

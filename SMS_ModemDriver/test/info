@@ -1,0 +1,11 @@
+Create Databse test;
+
+CREATE TABLE `t1` (
+  `id` int(11) default NULL,
+  `name` varchar(100) default NULL
+);
+
+
+gcc testsql.c -I/usr/include/mysql -L/usr/lib/mysql -lmysqlclient
+
+
