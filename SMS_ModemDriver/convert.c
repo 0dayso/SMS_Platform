@@ -1,3 +1,24 @@
+/*
+ * A platform based on B/S mode with enough features to be as a SMS server.
+ * <SMS_Platform> Copyright (C) <2012>  <Jiangzhe Ren>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
+ *
+ * Email : jiangzhe78@gmail.com
+ */
+
 #include "main.h"
 
 //比较字符串函数，如果front为0，则从后开始
@@ -56,8 +77,6 @@ int gsmString2Bytes(const char* pSrc, unsigned char* pDst, int nSrcLength)
 	return nSrcLength / 2;
 }
 
-
-
 // 字节数据转换为可打印字符串
 // 如：{0xC8, 0x32, 0x9B, 0xFD, 0x0E, 0x01} --> "C8329BFD0E01" 
 // pSrc: 源数据指针
@@ -79,8 +98,6 @@ int gsmBytes2String(const unsigned char* pSrc, char* pDst, int nSrcLength)
 	// 返回目标字符串长度
 	return nSrcLength * 2;
 }
-
-
 
 // 7bit编码
 // pSrc: 源字符串指针
@@ -132,8 +149,6 @@ int gsmEncode7bit(const char* pSrc, unsigned char* pDst, int nSrcLength)
 	// 返回目标串长度
 	return nDst;
 }
-
-
 
 // 7bit解码
 // pSrc: 源编码串指针
@@ -201,7 +216,6 @@ int gsmDecode7bit(const unsigned char* pSrc, char* pDst, int nSrcLength)
 }
 
 
-
 // 8bit编码
 // pSrc: 源字符串指针
 // pDst: 目标编码串指针
@@ -254,7 +268,6 @@ int gsmEncodeUcs2(const char* pSrc, unsigned char* pDst, int nSrcLength)
 	// 返回目标编码串长度
 	return nDstLength * 2;
 }
-
 
 
 // UCS2解码
