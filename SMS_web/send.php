@@ -1,4 +1,4 @@
-<?php 
+	<?php 
 /*
  * A platform based on B/S mode with enough features to be as a SMS server.
  * <SMS_Platform> Copyright (C) <2012>  <Jiangzhe Ren>
@@ -41,23 +41,20 @@ if($_SESSION["login"] != "YES")
 <script type="text/javascript" src="lib/jquery.js"></script>
 <script type="text/javascript" src="lib/maxlength.js"></script>
 <script language="javascript" type="text/javascript">
-	<!--
-		function checkdata()
-		{
-				if(myform.name.value == '')
-				{	
-					alert ("接收方号码不能为空！");
-					myform.focus();
-					return false;
-				}
-				if(myform.content.value == '')
-				{
-					alert ("短消息内容不能为空！");
-					myform.focus();
-					return false;
-				}
+<!--
+	function checkdata() {
+		if(myform.name.value == '') {	
+			alert ("接收方号码不能为空！");
+			myform.focus();
+			return false;
 		}
-	-->
+		if(myform.content.value == '') {
+			alert ("短消息内容不能为空！");
+			myform.focus();
+			return false;
+		}
+	}
+-->
 </script>
 
 <?php
@@ -129,7 +126,7 @@ if($_SESSION["login"] != "YES")
         <tr>
           <td height="98">
 <?php
-	if( $recv_id ) {
+	if( $recv_id ) {	
 		echo "回复内容：";
 	} else {
 		echo "发送内容：";

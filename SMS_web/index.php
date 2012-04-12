@@ -30,32 +30,28 @@
 <script language="javascript">
 <!--
 $(document).ready(function() {
-	$('body').keydown(function(event){  
-	   if(event.keyCode==13){  
-		 return checkdata();
-	   }  
+	$('body').keydown(function(event) {  
+		if(event.keyCode==13){  
+			return checkdata();
+		}  
 	}); 
-	$('#login_div').click(function(){
-	   	 return checkdata();
+	$('#login_div').click(function() {
+	   	return checkdata();
 	});
 });
  
-
-function checkdata()
-{
-		if(myform.user.value == '')
-		{	
-			alert ("用户名不能为空！");
-			myform.focus();
-			return false;
-		}
-		if(myform.passwd.value == '')
-		{
-			alert ("请输入密码！");
-			myform.focus();
-			return false;
-		}
-		 $('#button_sunmit').trigger('click');
+function checkdata() {
+	if(myform.user.value == '') {	
+		alert ("用户名不能为空！");
+		myform.focus();
+		return false;
+	}
+	if(myform.passwd.value == '') {
+		alert ("请输入密码！");
+		myform.focus();
+		return false;
+	}
+	$('#button_sunmit').trigger('click');
 }
 -->
 </script>

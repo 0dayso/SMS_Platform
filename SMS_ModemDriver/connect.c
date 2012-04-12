@@ -23,8 +23,7 @@
 
 
 //连接数据库
-void connecting( CONF_NODE *head )
-{   
+void connecting( CONF_NODE *head ) {   
 	mysql_init( &my_connection );
 
 //	if ( mysql_real_connect(&my_connection,"localhost", "root", "123321", "test",0 ,NULL ,0) ) {	
@@ -55,9 +54,7 @@ void connecting( CONF_NODE *head )
 		printf("Connected...\n");
 		mysql_query(&my_connection, "set names utf8");
 	}
-
 	return 0;
 
 }*/
-
 

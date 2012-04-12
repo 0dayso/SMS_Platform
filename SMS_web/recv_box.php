@@ -49,7 +49,6 @@ function CheckNew() {
 	$('#button2check').trigger('click'); 
 };
 
-
 function CheckNewMsg(time) {
 	$.post(
 	  'check_NewMsg.php',
@@ -118,9 +117,6 @@ function AjaxDelete( table, id )
 	  }
 	);
 };
-
-
-
 
 </script>
 <!-- InstanceEndEditable -->

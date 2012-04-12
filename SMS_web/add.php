@@ -24,8 +24,7 @@
 	session_start();
 ?>
 <?php
-if($_SESSION["login"] != "YES")
-{
+if($_SESSION["login"] != "YES") {
 	echo "<script languge=javascript> alert('您没有登录，无权访问，请先登录！');
 			location.href='index.php'</script>";
 }
@@ -40,16 +39,13 @@ if($_SESSION["login"] != "YES")
 <!-- InstanceBeginEditable name="EditRegion2" -->
 <script language="JavaScript" type="text/javascript">
 <!--
-function checkdata()
-{
-	if(myform.name.value == '')
-	{	
+function checkdata() {
+	if(myform.name.value == '') {	
 		alert ("联系人名字不能为空，建议输入真实姓名！");
 		myform.focus();
 		return false;
 	}
-	if(myform.content.value == '')
-	{
+	if(myform.content.value == '') {
 		alert ("联系号码不能为空！");
 		myform.focus();
 		return false;
@@ -90,8 +86,7 @@ function checkdata()
 	
 	$content = PhoneNumberDetect( $content );
 	//登录账号
-	if($name != "" && $content != "" ) 
-	{
+	if($name != "" && $content != "" )  {
 		if( $content ) {
 			$query = "select * from `number` where num='$content'";
 			$result = mysql_query( $query );

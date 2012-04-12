@@ -19,10 +19,13 @@
 # 
 
 CC=gcc
+
 #CFLAGS=-lpthread -lreadline -lhistory -lcurses -L/usr/lib/mysql/ -lmysqlclient -lz 
 CFLAGS=-lpthread  -L/usr/lib/mysql/ -lmysqlclient -DDBG
+
 all=main.o sms.o convert.o send.o receive.o connect.o get_conf.o
 #all=main.o connect.o get_conf.o
+
 main: $(all) main.h
 	$(CC) -o $@ $^ $(CFLAGS)
 %.o: %.c main.h

@@ -21,7 +21,7 @@
 
 #include "main.h"
 
-//比较字符串函数，如果front为0，则从后开始
+// 比较字符串函数，如果front为0，则从后开始
 int subnstr( char *src1, char *src2, int front, int len ) {
 	char *p1, *p2;
 	int len1, len2;
@@ -41,38 +41,33 @@ int subnstr( char *src1, char *src2, int front, int len ) {
 }
 
 
-//说明一点：XXXXX 2 YYYYY表示从XXXXX to YYYYY
+// 说明一点：XXXXX 2 YYYYY表示从XXXXX to YYYYY
 // 可打印字符串转换为字节数据
 // 如："C8329BFD0E01" --> {0xC8, 0x32, 0x9B, 0xFD, 0x0E, 0x01}
 // pSrc: 源字符串指针
 // pDst: 目标数据指针
 // nSrcLength: 源字符串长度
 // 返回: 目标数据长度
-int gsmString2Bytes(const char* pSrc, unsigned char* pDst, int nSrcLength)
-{
+int gsmString2Bytes(const char* pSrc, unsigned char* pDst, int nSrcLength) {
 	int i = 0;
-	for( i = 0; i<nSrcLength; i+=2)      //目的是确保能够循环，并且控制循环次数
-	{
+	for( i = 0; i<nSrcLength; i+=2) {      // 目的是确保能够循环，并且控制循环次数
 		// 输出高4位
 		if(*pSrc>='0' && *pSrc<='9') {
 			*pDst = (*pSrc - '0') << 4;
 		} else {
 			*pDst = (*pSrc - 'A' + 10) << 4;
 		}
-
 		pSrc++;
-
+		
 		// 输出低4位
 		if(*pSrc>='0' && *pSrc<='9') {
 			*pDst |= *pSrc - '0';
 		} else {
 			*pDst |= *pSrc - 'A' + 10;
 		}
-
 		pSrc++;
 		pDst++;
 	}
-
 	// 返回目标数据长度
 	return nSrcLength / 2;
 }
@@ -83,16 +78,14 @@ int gsmString2Bytes(const char* pSrc, unsigned char* pDst, int nSrcLength)
 // pDst: 目标字符串指针
 // nSrcLength: 源数据长度
 // 返回: 目标字符串长度
-int gsmBytes2String(const unsigned char* pSrc, char* pDst, int nSrcLength)
-{
-	const char tab[]="0123456789ABCDEF";	// 0x0-0xf的字符查找表
+int gsmBytes2String(const unsigned char* pSrc, char* pDst, int nSrcLength) {
+	const char tab[] = "0123456789ABCDEF";	// 0x0-0xf的字符查找表
 	int i = 0;
 	for( i=0; i<nSrcLength; i++) {
 		*pDst++ = tab[*pSrc >> 4];		// 输出高4位
 		*pDst++ = tab[*pSrc & 0x0f];	// 输出低4位
 		pSrc++;
 	}
-
 	// 输出字符串加个结束符
 	*pDst = '\0';
 	// 返回目标字符串长度
@@ -105,11 +98,10 @@ int gsmBytes2String(const unsigned char* pSrc, char* pDst, int nSrcLength)
 // nSrcLength: 源字符串长度
 // 返回: 目标编码串长度
 
-int gsmEncode7bit(const char* pSrc, unsigned char* pDst, int nSrcLength)
-{
-	int nSrc;		// 源字符串的计数值
-	int nDst;		// 目标编码串的计数值
-	int nChar;		// 当前正在处理的组内字符字节的序号，范围是0-7
+int gsmEncode7bit(const char* pSrc, unsigned char* pDst, int nSrcLength) {
+	int nSrc;				// 源字符串的计数值
+	int nDst;				// 目标编码串的计数值
+	int nChar;				// 当前正在处理的组内字符字节的序号，范围是0-7
 	unsigned char nLeft;	// 上一字节残余的数据
 
 	// 计数值初始化
@@ -119,14 +111,12 @@ int gsmEncode7bit(const char* pSrc, unsigned char* pDst, int nSrcLength)
 	// 将源串每8个字节分为一组，压缩成7个字节
 	// 循环该处理过程，直至源串被处理完
 	// 如果分组不到8字节，也能正确处理
-	while(nSrc<nSrcLength)
-	{
+	while(nSrc<nSrcLength) {
 		// 取源字符串的计数值的最低3位
 		nChar = nSrc & 7;     //有何作用？已解决。
 
 		// 处理源串的每个字节
-		if(nChar == 0)
-		{
+		if(nChar == 0) {
 			// 组内第一个字节，只是保存起来，待处理下一个字节时使用
 			nLeft = *pSrc;
 		} else {
@@ -140,12 +130,10 @@ int gsmEncode7bit(const char* pSrc, unsigned char* pDst, int nSrcLength)
 			pDst++;
 			nDst++;
 		}
-
 		// 修改源串的指针和计数值
 		pSrc++;
 		nSrc++;
 	}
-
 	// 返回目标串长度
 	return nDst;
 }
@@ -155,8 +143,7 @@ int gsmEncode7bit(const char* pSrc, unsigned char* pDst, int nSrcLength)
 // pDst: 目标字符串指针
 // nSrcLength: 源编码串长度
 // 返回: 目标字符串长度
-int gsmDecode7bit(const unsigned char* pSrc, char* pDst, int nSrcLength)
-{
+int gsmDecode7bit(const unsigned char* pSrc, char* pDst, int nSrcLength) {
 	int nSrc;		// 源字符串的计数值
 	int nDst;		// 目标解码串的计数值
 	int nByte;		// 当前正在处理的组内字节的序号，范围是0-6
@@ -165,7 +152,6 @@ int gsmDecode7bit(const unsigned char* pSrc, char* pDst, int nSrcLength)
 	// 计数值初始化
 	nSrc = 0;
 	nDst = 0;
-	
 	// 组内字节序号和残余数据初始化
 	nByte = 0;
 	nLeft = 0;
@@ -173,8 +159,7 @@ int gsmDecode7bit(const unsigned char* pSrc, char* pDst, int nSrcLength)
 	// 将源数据每7个字节分为一组，解压缩成8个字节
 	// 循环该处理过程，直至源数据被处理完
 	// 如果分组不到7字节，也能正确处理
-	while(nSrc<nSrcLength)
-	{
+	while(nSrc<nSrcLength) {
 		// 将源字节右边部分与残余数据相加，去掉最高位，得到一个目标解码字节
 		*pDst = ((*pSrc << nByte) | nLeft) & 0x7f;
 
@@ -184,33 +169,27 @@ int gsmDecode7bit(const unsigned char* pSrc, char* pDst, int nSrcLength)
 		// 修改目标串的指针和计数值
 		pDst++;
 		nDst++;
-
 		// 修改字节计数值
 		nByte++;
 
 		// 到了一组的最后一个字节
-		if(nByte == 7)
-		{
+		if(nByte == 7) {
 			// 额外得到一个目标解码字节
 			*pDst = nLeft;
 
 			// 修改目标串的指针和计数值
 			pDst++;
 			nDst++;
-
 			// 组内字节序号和残余数据初始化
 			nByte = 0;
 			nLeft = 0;
 		}
-
 		// 修改源串的指针和计数值
 		pSrc++;
 		nSrc++;
 	}
-
 	// 输出字符串加个结束符
 	*pDst = '\0';
-
 	// 返回目标串长度
 	return nDst;
 }
@@ -221,11 +200,9 @@ int gsmDecode7bit(const unsigned char* pSrc, char* pDst, int nSrcLength)
 // pDst: 目标编码串指针
 // nSrcLength: 源字符串长度
 // 返回: 目标编码串长度
-int gsmEncode8bit(const char* pSrc, unsigned char* pDst, int nSrcLength)
-{
+int gsmEncode8bit(const char* pSrc, unsigned char* pDst, int nSrcLength) {
 	// 简单复制
 	memcpy(pDst, pSrc, nSrcLength);
-
 	return nSrcLength;
 }
 
@@ -234,14 +211,11 @@ int gsmEncode8bit(const char* pSrc, unsigned char* pDst, int nSrcLength)
 // pDst: 目标字符串指针
 // nSrcLength: 源编码串长度
 // 返回: 目标字符串长度
-int gsmDecode8bit(const unsigned char* pSrc, char* pDst, int nSrcLength)
-{
+int gsmDecode8bit(const unsigned char* pSrc, char* pDst, int nSrcLength) {
 	// 简单复制
 	memcpy(pDst, pSrc, nSrcLength);
-
 	// 输出字符串加个结束符
 	*pDst = '\0';
-
 	return nSrcLength;
 }
 
@@ -250,8 +224,7 @@ int gsmDecode8bit(const unsigned char* pSrc, char* pDst, int nSrcLength)
 // pDst: 目标编码串指针
 // nSrcLength: 源字符串长度
 // 返回: 目标编码串长度
-int gsmEncodeUcs2(const char* pSrc, unsigned char* pDst, int nSrcLength)
-{
+int gsmEncodeUcs2(const char* pSrc, unsigned char* pDst, int nSrcLength) {
 	int nDstLength;		// UNICODE宽字符数目
 	wchar_t wchar[128];	// UNICODE串缓冲区
 	int i = 0;
@@ -260,8 +233,7 @@ int gsmEncodeUcs2(const char* pSrc, unsigned char* pDst, int nSrcLength)
 	nDstLength = mbstowcs( wchar, pSrc,nSrcLength);//如果转换不成功，会返回-1
 
 	// 高低字节分离，输出
-	for(i=0; i<nDstLength; i++)
-	{
+	for(i=0; i<nDstLength; i++) {
 		*pDst++ = wchar[i] >> 8;		// 先输出高位字节
 		*pDst++ = wchar[i] & 0xff;		// 后输出低位字节
 	}
@@ -275,8 +247,7 @@ int gsmEncodeUcs2(const char* pSrc, unsigned char* pDst, int nSrcLength)
 // pDst: 目标字符串指针
 // nSrcLength: 源编码串长度
 // 返回: 目标字符串长度
-int gsmDecodeUcs2(const unsigned char* pSrc, char* pDst, int nSrcLength)
-{
+int gsmDecodeUcs2(const unsigned char* pSrc, char* pDst, int nSrcLength) {
 	int nDstLength;		// UNICODE宽字符数目
 	wchar_t wchar[128];	// UNICODE串缓冲区
 	int i = 0;
@@ -284,8 +255,7 @@ int gsmDecodeUcs2(const unsigned char* pSrc, char* pDst, int nSrcLength)
 	wchar_t *tempchar;
 	//printf( "In gsmDecodeUcs2, nSrcLength:[%d]\n\n", nSrcLength );
 	tempchar = wchar;  
-	for( i=0; i<nSrcLength/2; i++)
-	{
+	for( i=0; i<nSrcLength/2; i++) {
 		wchar[i] = *pSrc++ << 8;	// 先高位字节
 		wchar[i] |= *pSrc++;		// 后低位字节
 		//printf( "wchar[%d] = [%d]\n\n", i, wchar[i] );
@@ -311,8 +281,7 @@ int gsmDecodeUcs2(const unsigned char* pSrc, char* pDst, int nSrcLength)
 // pDst: 目标字符串指针
 // nSrcLength: 源字符串长度
 // 返回: 目标字符串长度
-int gsmInvertNumbers(const char* pSrc, char* pDst, int nSrcLength)
-{
+int gsmInvertNumbers(const char* pSrc, char* pDst, int nSrcLength) {
 	int nDstLength;		// 目标字符串长度
 	char ch;			// 用于保存一个字符
 
@@ -320,23 +289,19 @@ int gsmInvertNumbers(const char* pSrc, char* pDst, int nSrcLength)
 	nDstLength = nSrcLength;
 	int i = 0;
 // 每两两字符进行颠倒对调变换
-	for( i=0; i<nSrcLength;i+=2)      //i的目的是保证循环的次数
-	{
+	for( i=0; i<nSrcLength;i+=2) {     //i的目的是保证循环的次数
 		ch = *pSrc++;		// 保存先出现的字符   ++++++++++++++++++++++++
 		*pDst++ = *pSrc++;	// 复制后出现的字符   +++  注意“++”运算  +++
 		*pDst++ = ch;		// 复制先出现的字符   ++++++++++++++++++++++++
 	}
 
 	// 源串长度是奇数吗？
-	if(nSrcLength & 1)
-	{
+	if(nSrcLength & 1){
 		*(pDst-2) = 'F';	// 补'F'
 		nDstLength++;		// 目标串长度加1
 	}
-
 	// 输出字符串加个结束符
 	*pDst = '\0';
-
 	// 返回目标字符串长度
 	return nDstLength;
 }
@@ -347,31 +312,26 @@ int gsmInvertNumbers(const char* pSrc, char* pDst, int nSrcLength)
 // pDst: 目标字符串指针
 // nSrcLength: 源字符串长度
 // 返回: 目标字符串长度
-int gsmSerializeNumbers(const char* pSrc, char* pDst, int nSrcLength)
-{
+int gsmSerializeNumbers(const char* pSrc, char* pDst, int nSrcLength) {
 	int nDstLength;		// 目标字符串长度
 	char ch;			// 用于保存一个字符
 	char *temp;
 	temp = pDst;
-// 复制串长度
+	// 复制串长度
 	nDstLength = nSrcLength;
 	int i = 0;
 	// 两两颠倒,使之恢复原来的正常顺序
-	for( i=0; i<nSrcLength;i+=2)
-	{
-		
+	for( i=0; i<nSrcLength;i+=2) {
 		ch = *pSrc++;		// 保存先出现的字符
 		*pDst++ = *pSrc++;	// 复制后出现的字符
 		*pDst++ = ch;		// 复制先出现的字符
 		
 	}
-// 最后的字符是'F'吗？
-	if(*(pDst-1) == 'F')
-	{
+	// 最后的字符是'F'吗？
+	if(*(pDst-1) == 'F') {
 		pDst--;             //pDst此时所在的位置是整个源字符串长度加1所在的位置
 		nDstLength--;		// 目标字符串长度减1
 	}
-
 	// 输出字符串加个结束符
 	*pDst = '\0';
 	// 返回目标字符串长度
@@ -382,8 +342,7 @@ int gsmSerializeNumbers(const char* pSrc, char* pDst, int nSrcLength)
 // pSrc: 源PDU参数指针
 // pDst: 目标PDU串指针
 // 返回: 目标PDU串长度
-int gsmEncodePdu(const SM_PARAM* pSrc, char* pDst)
-{
+int gsmEncodePdu(const SM_PARAM* pSrc, char* pDst) {
 	int nLength;			// 内部用的串长度
 	int nDstLength;			// 目标PDU串长度
 	unsigned char buf[1024];	// 内部用的缓冲区
@@ -413,15 +372,12 @@ int gsmEncodePdu(const SM_PARAM* pSrc, char* pDst)
 	buf[0] = pSrc->TP_PID;			// 协议标识(TP-PID)
 	buf[1] = pSrc->TP_DCS;			// 用户信息编码方式(TP-DCS)
 	buf[2] = 0;						// 有效期(TP-VP)为5分钟
-	if(pSrc->TP_DCS == GSM_7BIT)	
-	{
+	if(pSrc->TP_DCS == GSM_7BIT) {
 		// 7-bit编码方式
 		buf[3] = nLength;			// 编码前长度
 		// 转换TP-DA到目标PDU串
 		nLength = gsmEncode7bit(pSrc->TP_UD, &buf[4], nLength+1) + 4;	
-	}
-	else if(pSrc->TP_DCS == GSM_UCS2)
-	{
+	} else if(pSrc->TP_DCS == GSM_UCS2) {
 		// UCS2编码方式
 		
 		//把短信长度限制在70字以内
@@ -429,36 +385,34 @@ int gsmEncodePdu(const SM_PARAM* pSrc, char* pDst)
 		
 		// 转换TP-DA到目标PDU串
 		buf[3] = gsmEncodeUcs2(pSrc->TP_UD, &buf[4], nLength);		
-	//nLength等于该段数据长度，为什么要加4？因为nLength,buf[0],buf[1],buf[2]各占一个字节
+		//nLength等于该段数据长度，为什么要加4？因为nLength,buf[0],buf[1],buf[2]各占一个字节
 		nLength = buf[3] + 4;		
 		
-	}
-	else
-	{
+	} else {
 		// 8-bit编码方式
 		buf[3] = gsmEncode8bit(pSrc->TP_UD, &buf[4], nLength);	// 转换TP-DA到目标PDU串
 		nLength = buf[3] + 4;		// nLength等于该段数据长度
 	}
 	// 转换该段数据到目标PDU串
 	nDstLength += gsmBytes2String(buf, &pDst[nDstLength], nLength);		
-     /*只要理解了为什么不用pDst[nDstLength-1]就知道为什么了*/
+    /*只要理解了为什么不用pDst[nDstLength-1]就知道为什么了*/
 	//  字符串长度
 	return nDstLength;//实际上nDstLength是表示整个pdu串的长度，包括以上所有串
 }
 
 
 
-//截断utf8字符串
-//*Src 为待截取字符串
-//where 为截断位置
+// 截断utf8字符串
+// *Src 为待截取字符串
+// where 为截断位置
 
-//UNICODE              	UTF-8 
-//00000000 - 0000007F 	0xxxxxxx 
-//00000080 - 000007FF 	110xxxxx 10xxxxxx 
-//00000800 - 0000FFFF 	1110xxxx 10xxxxxx 10xxxxxx 
-//00010000 - 001FFFFF 	11110xxx 10xxxxxx 10xxxxxx 10xxxxxx 
-//00200000 - 03FFFFFF 	111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 
-//04000000 - 7FFFFFFF 	1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 
+// UNICODE              	UTF-8 
+// 00000000 - 0000007F 	0xxxxxxx 
+// 00000080 - 000007FF 	110xxxxx 10xxxxxx 
+// 00000800 - 0000FFFF 	1110xxxx 10xxxxxx 10xxxxxx 
+// 00010000 - 001FFFFF 	11110xxx 10xxxxxx 10xxxxxx 10xxxxxx 
+// 00200000 - 03FFFFFF 	111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 
+// 04000000 - 7FFFFFFF 	1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 
 
 void cut_utf8( char *Src, int where ) {
 	int i = 0;
@@ -492,8 +446,7 @@ void cut_utf8( char *Src, int where ) {
 // pSrc: 源PDU串指针
 // pDst: 目标PDU参数指针
 // 返回: 用户信息串长度
-int gsmDecodePdu(const char* pSrc, SM_PARAM* pDst)
-{
+int gsmDecodePdu(const char* pSrc, SM_PARAM* pDst) {
 	int nDstLength;			// 目标PDU串长度
 	unsigned char tmp;		// 内部用的临时字节变量
 	unsigned char buf[256];	// 内部用的缓冲区
@@ -518,7 +471,7 @@ int gsmDecodePdu(const char* pSrc, SM_PARAM* pDst)
 		gsmSerializeNumbers(pSrc, pDst->TPA, tmp);	// 取TP-RA号码
 		pSrc += tmp;				// 指针后移
 	}
-// TPDU段协议标识、编码方式、用户信息等
+	// TPDU段协议标识、编码方式、用户信息等
 	gsmString2Bytes(pSrc, (unsigned char*)&pDst->TP_PID, 2);	// 取协议标识(TP-PID)
 	pSrc += 2;		// 指针后移
 	gsmString2Bytes(pSrc, (unsigned char*)&pDst->TP_DCS, 2);	// 取编码方式(TP-DCS)
@@ -528,16 +481,13 @@ int gsmDecodePdu(const char* pSrc, SM_PARAM* pDst)
 	gsmString2Bytes(pSrc, &tmp, 2);	// 用户信息长度(TP-UDL)
 	pSrc += 2;		// 指针后移
 	//printf( "Content:[%s]\n\n", pSrc );
-	if(pDst->TP_DCS == GSM_7BIT)	
-	{
+	if(pDst->TP_DCS == GSM_7BIT) {
 		// 7-bit解码
 		//printf( "Methoed of decoder:[GSM_7BIT]\n\n" );
 		nDstLength = gsmString2Bytes(pSrc, buf, tmp & 7 ? (int)tmp * 7 / 4 + 2 : (int)tmp * 7 / 4);	// 格式转换
 		gsmDecode7bit(buf, pDst->TP_UD, nDstLength);	// 转换到TP-DU
 		nDstLength = tmp;
-	}
-	else if(pDst->TP_DCS == GSM_UCS2)
-	{
+	} else if(pDst->TP_DCS == GSM_UCS2) {
 		//长短信处理
 		if( strncmp(pSrc, "050003", 6) == 0 ) {
 			//printf( "this is a Multiple SMS\n\n" );
@@ -564,9 +514,7 @@ int gsmDecodePdu(const char* pSrc, SM_PARAM* pDst)
 		cut_utf8( buf, (int)(tmp/2) );		
 		
 		strcat( pDst->TP_UD, buf );
-	}
-	else
-	{
+	} else {
 		// 8-bit解码
 		//printf( "Methoed of decoder:[GSM_8BIT]\n\n" );
 		nDstLength = gsmString2Bytes(pSrc, buf, tmp * 2);			// 格式转换

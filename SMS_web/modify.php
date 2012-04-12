@@ -38,16 +38,13 @@ if($_SESSION["login"] != "YES")
 <!-- InstanceBeginEditable name="EditRegion2" -->
 <script language="JavaScript" type="text/javascript">
 <!--
-function checkdata()
-{
-	if(myform.name.value == '')
-	{	
+function checkdata() {
+	if(myform.name.value == '') {	
 		alert ("接收方号码不能为空！");
 		myform.focus();
 		return false;
 	}
-	if(myform.number.value == '')
-	{
+	if(myform.number.value == '') {
 		alert ("短消息内容不能为空！");
 		myform.focus();
 		return false;
@@ -101,8 +98,7 @@ function checkdata()
 		
 		$Detect_number = PhoneNumberDetect( $number );
 		
-		if( $name != "" && $Detect_number != "" ) 
-		{
+		if( $name != "" && $Detect_number != "" )  {
 			if( $number ) {
 				$query = "select * from `number` where num='$number' and `idnum` <> '$id'";
 				//echo $query;

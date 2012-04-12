@@ -47,17 +47,14 @@
 #include <sys/stat.h>
 
 #ifndef DBG
-#define DBGPRINT(fmt, args...)   			\
-{                                           \
+#define DBGPRINT(fmt, args...) {   			\
     printf(fmt, ## args);    	\
 }
 #else
 #define DBGPRINT(fmt, args...)
 #endif
 
-
-//start:  摘自`ReadLine`的一些定义
-//获取配置文件进而连接数据库
+// 获取配置文件进而连接数据库
 #define whitespace(c) (((c) == ' ') || ((c) == '\t') || ((c) == '\n'))
 
 #define STREQ(a, b)	(((a)[0] == (b)[0]) && (strcmp ((a), (b)) == 0))
@@ -82,13 +79,12 @@ typedef struct {
 } SM_PARAM;
 
 
-//读取配置文件的结构体，类似于关联数组
-//包括对应名字的相应内容
+// 读取配置文件的结构体，类似于关联数组
+// 包括对应名字的相应内容
 
-typedef struct conf_node	
-{
-        char name[ 32 ];			//字段名
-        char value[ 32];			//字段值
+typedef struct conf_node {
+        char name[ 32 ];			// 字段名
+        char value[ 32];			// 字段值
         struct conf_node *next;
 } CONF_NODE;
 
@@ -108,15 +104,14 @@ void connnecting( CONF_NODE *head );
 #define CONF_FILE "env.conf"
 #define SERIAL_DEV "/dev/ttyS0"
 
-int fd;					//获取串口的fd
+int fd;						// 获取串口的fd
 
-pthread_mutex_t mutex_send, mutex_receive, mutex_reply, mutex;	//互斥量
-static int count=0;			//用于读取串口时，计数
-//end
+pthread_mutex_t mutex_send, mutex_receive, mutex_reply, mutex;	// 互斥量
+static int count=0;			// 用于读取串口时，计数
 
-//比较字符串函数，如果front为0，则从后开始
+// 比较字符串函数，如果front为0，则从后开始
 int subnstr( char *src1, char *src2, int front, int len );
-//截断utf8字符串
+// 截断utf8字符串
 void cut_utf8( char *Src, int where );
 
 // 用户信息编码方式
@@ -124,14 +119,13 @@ void cut_utf8( char *Src, int where );
 #define GSM_8BIT		4
 #define GSM_UCS2		8
 
-
-//创建的四个线程
+// 创建的四个线程
 void *SendThread2ScanDB();
 void *SendThread2ScanList();
 void *RecvThread2ScanPort();
 void *RecvThread2ScanList();
 
-//函数的申明
+// 函数的申明
 int gsmBytes2String(const unsigned char* pSrc, char* pDst, int nSrcLength);
 int gsmString2Bytes(const char* pSrc, unsigned char* pDst, int nSrcLength);
 int gsmEncode7bit(const char* pSrc, unsigned char* pDst, int nSrcLength);
@@ -148,5 +142,5 @@ int gsmDecodePdu(const char* pSrc, SM_PARAM* pDst);
 int gsmSendMessage(int fd, SM_PARAM* pSrc);
 int gsmReadMessage(int fd, SM_PARAM* pMsg);
 int gsmDeleteMessage(int index);
+
 #endif
-                                     

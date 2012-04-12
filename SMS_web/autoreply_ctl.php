@@ -41,8 +41,7 @@ if($_SESSION["login"] != "YES")
 <link type="text/css" rel="stylesheet" href="style/common.css" />
 <script language="javascript" src="lib/jquery.js"></script>
 <script language="JavaScript" type="text/javascript">
-function AjaxDelete( table, id )
-{
+function AjaxDelete( table, id ) {
 //$.get()方式：
 	//alert("get id:("+id+")");
 	$.post(
@@ -141,12 +140,10 @@ function AjaxDelete( table, id )
 				LIMIT $start_limit , $page_items ";
 	$result = mysql_query( $query );
 	$sum_rows = mysql_num_rows($result);
-	if($sum_rows < 1)
-	{
+	if($sum_rows < 1) {
 		echo "<tr class='b'><td align='center' colspan='4'>您还没有添加！</td></tr>";
 	} else {
-		while( $info = mysql_fetch_array( $result ) )
-		{
+		while( $info = mysql_fetch_array( $result ) ) {
 			if($info != "") {
 				$name = Number2Name( $info['num'] );
 				$ContractNo = PhoneNumberDetect($info['num']);

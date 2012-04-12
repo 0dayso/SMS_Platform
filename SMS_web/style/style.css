@@ -17,7 +17,6 @@ div {
 	/*border:1px solid #FF0000;*/
 }
 
-
 #container {	
 	background-color: #18537c;
 	text-align: center;
@@ -27,7 +26,6 @@ div {
 	border:1px dashed #AAAAAA;
 	border-top:none;
 }
-
 
 #head {
 	width:820px; height:120px;
@@ -94,7 +92,6 @@ ul li {
 	border-top:1px solid #7eb3d7;
 }
 
-
 #footer {
 	clear:both;
 	position:relative;
@@ -119,12 +116,10 @@ ul li {
 	.title .pages { float: right; }
 	.title p { font-weight: bold; }
 	
-
 .td_flag{
 	color:#00FFCC;
 	font-weight:bolder;
 }
-
 
 #a_in_tab {
 	text-decoration:underline;

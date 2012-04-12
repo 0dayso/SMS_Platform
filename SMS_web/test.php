@@ -24,8 +24,7 @@
 	session_start();
 ?>
 <?php
-if($_SESSION["login"] != "YES")
-{
+if($_SESSION["login"] != "YES") {
 	echo "<script languge=javascript> alert('您没有登录，无权访问，请先登录！');
 			location.href='../index.php'</script>";
 }
@@ -41,38 +40,33 @@ if($_SESSION["login"] != "YES")
 <script language="javascript" src="lib/maxlength.js"></script>
 <script language="JavaScript" type="text/javascript">
 <!--
-function checkdata()
-{
-		if(myform.name.value == '')
-		{	
-			alert ("接收方号码不能为空！");
-			myform.focus();
-			return false;
-		}
-		if(myform.content.value == '')
-		{
-			alert ("短消息内容不能为空！");
-			myform.focus();
-			return false;
-		}
+function checkdata() {
+	if(myform.name.value == '') {	
+		alert ("接收方号码不能为空！");
+		myform.focus();
+		return false;
+	}
+	if(myform.content.value == '') {
+		alert ("短消息内容不能为空！");
+		myform.focus();
+		return false;
+	}
 }
 
 $(function () {
-        $('textarea.limited').maxlength({
-            'feedback' : '.charsLeft', 'useInput' : true
-        });
-       
-        $('input.limited').maxlength({
-            'feedback' : '.charsLeft' 
-        });
-       
-        $('textarea.wordLimited').maxlength({
-            'words': true,
-            'feedback': '.wordsLeft', 'useInput' : true
-        });
-    });
-
-
+	$('textarea.limited').maxlength({
+		'feedback' : '.charsLeft', 'useInput' : true
+	});
+   
+	$('input.limited').maxlength({
+		'feedback' : '.charsLeft' 
+	});
+   
+	$('textarea.wordLimited').maxlength({
+		'words': true,
+		'feedback': '.wordsLeft', 'useInput' : true
+	});
+});
 -->
 </script>
 <!-- InstanceEndEditable -->
@@ -111,9 +105,6 @@ $(function () {
         <p>可以输入 <span class="charsLeft">10</span> 个字符</p>
         <input maxlength="10" class="limited" />
   </form>
-
-
-
 
 <?php
 

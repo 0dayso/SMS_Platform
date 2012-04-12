@@ -10,7 +10,7 @@ var uncheckedkeycodes=/(8)|(13)|(16)|(17)|(18)/  //keycodes that are not checked
 
 thresholdcolors.sort(function(a,b){return parseInt(a[0])-parseInt(b[0])}) //sort thresholdcolors by percentage, ascending
 
-function setformfieldsize($fields, optsize, optoutputdiv){
+function setformfieldsize($fields, optsize, optoutputdiv) {
 	var $=jQuery
 	$fields.each(function(i){
 		var $field=$(this)
@@ -27,7 +27,7 @@ function setformfieldsize($fields, optsize, optoutputdiv){
 	})
 }
 
-setformfieldsize.restrict=function($field, e){
+setformfieldsize.restrict=function($field, e) {
 	var keyunicode=e.charCode || e.keyCode
 	if (!uncheckedkeycodes.test(keyunicode)){
 		if ($field.val().length >= $field.data('maxsize')){ //if characters entered exceed allowed
@@ -38,7 +38,7 @@ setformfieldsize.restrict=function($field, e){
 	}
 }
 
-setformfieldsize.showlimit=function($field){
+setformfieldsize.showlimit=function($field) {
 	if ($field.val().length > $field.data('maxsize')){
 		var trimmedtext=$field.val().substring(0, $field.data('maxsize'))
 		$field.val(trimmedtext)
@@ -55,7 +55,7 @@ setformfieldsize.showlimit=function($field){
 	}
 }
 
-jQuery(document).ready(function($){ //fire on DOM ready
+jQuery(document).ready(function($) { //fire on DOM ready
 	var $targetfields=$("input[data-maxsize], textarea[data-maxsize]") //get INPUTs and TEXTAREAs on page with "data-maxsize" attr defined
 	setformfieldsize($targetfields)
 })

@@ -40,20 +40,17 @@ if($_SESSION["login"] != "YES")
 <!-- InstanceBeginEditable name="EditRegion2" -->
 <script language="JavaScript" type="text/javascript">
 <!--
-function checkdata()
-{
-		if(myform.name.value == '')
-		{	
-			alert ("接收方号码不能为空！");
-			myform.focus();
-			return false;
-		}
-		if(myform.content.value == '')
-		{
-			alert ("短消息内容不能为空！");
-			myform.focus();
-			return false;
-		}
+function checkdata() {
+	if(myform.name.value == '') {	
+		alert ("接收方号码不能为空！");
+		myform.focus();
+		return false;
+	}
+	if(myform.content.value == '') {
+		alert ("短消息内容不能为空！");
+		myform.focus();
+		return false;
+	}
 }
 -->
 </script>

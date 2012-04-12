@@ -41,14 +41,12 @@ if($_SESSION["login"] != "YES")
 <link type="text/css" rel="stylesheet" href="style/common.css" />
 <script language="JavaScript" type="text/javascript">
 <!--
-function checkdata()
-{
-		if(myform.content.value == '')
-		{
-			alert ("短消息内容不能为空！");
-			myform.focus();
-			return false;
-		}
+function checkdata() {
+	if(myform.content.value == '') {
+		alert ("短消息内容不能为空！");
+		myform.focus();
+		return false;
+	}
 }
 -->
 </script>

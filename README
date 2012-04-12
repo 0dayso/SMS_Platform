@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
  *
- * Email : jiangzhe78@gmail.com
+ * E-mail : jiangzhe78@gmail.com
  */
 
 该平台基于B/S模式，服务器使用LAMP（Linux+Apache+MySQL+PHP）系统环境，短信收发硬件使用GPRS短信猫实现，通过编写C程序实现收发控制。WEB2.0编程采用了Ajax技术（jQuery库），不仅减轻了服务器的负担，而且使用户与服务器交互更平滑。主要模块有：成员管理、收发短信管理、GPRS模块参数设置、用户客户端、管理员客户端。主要功能包括短信发送(群发与单人发送)、收发短信管理、自动回复、通信录管理、联系人分组管理等。非常适合拿来作为企事业单位或机关中心网站的一个管理模块。

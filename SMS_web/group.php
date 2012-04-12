@@ -23,8 +23,7 @@
 	session_start();
 ?>
 <?php
-if($_SESSION["login"] != "YES")
-{
+if($_SESSION["login"] != "YES") {
 	echo "<script languge=javascript> alert('您没有登录，无权访问，请先登录！');
 			location.href='index.php'</script>";
 }
@@ -41,18 +40,14 @@ if($_SESSION["login"] != "YES")
 <script type="text/javascript" src="lib/maxlength.js"></script>
 <script language="JavaScript" type="text/javascript">
 <!--
-function checkdata()
-{	
-	
-	if( myform.msgto.value == '' )
-	{	
+function checkdata() {	
+	if( myform.msgto.value == '' ) {	
 		alert ("接收方号码不能全部为空！");
 		myform.focus();
 		return false;
 	}
 	
-	if(myform.content.value == '')
-	{
+	if(myform.content.value == '') {
 		alert ("短消息内容不能为空！");
 		myform.focus();
 		return false;
@@ -60,76 +55,70 @@ function checkdata()
 }
 
 
-function moveOption1(e1, e2){
- try{
-  for(var i = 0; i < e1.options.length; i++){
-  
-   if( e1.options[i].selected ){
-    var e = e1.options[i];
-	e2.options.add(new Option(e.text, e.value));
-    e1.remove(i);
-    i = i - 1;
-   }
-  }
-  document.myform.msgto.value=getvalue(document.myform.list2);
- }
- catch(e){}
+function moveOption1(e1, e2) {
+	try {
+		for(var i = 0; i < e1.options.length; i++) {
+
+			if( e1.options[i].selected ) {
+				var e = e1.options[i];
+				e2.options.add(new Option(e.text, e.value));
+				e1.remove(i);
+				i = i - 1;
+			}
+		}
+		document.myform.msgto.value=getvalue(document.myform.list2);
+	}
+	catch(e){}
 }
 
-function moveOption2(e1, e2){
- try{
-  for(var i = 0; i < e1.options.length; i++){
-   if(e1.options[i].selected ){
-    var e = e1.options[i];
-	e2.options.add(new Option(e.text, e.value));
-    e1.remove(i);
-    i = i - 1;
-   }
-  }
-  document.myform.msgto.value=getvalue(document.myform.list2);
- }
- catch(e){}
+function moveOption2(e1, e2) {
+	try {
+		for(var i = 0; i < e1.options.length; i++) {
+			if(e1.options[i].selected ){
+				var e = e1.options[i];
+				e2.options.add(new Option(e.text, e.value));
+				e1.remove(i);
+				i = i - 1;
+			}
+		}
+		document.myform.msgto.value=getvalue(document.myform.list2);
+	}
+	catch(e){}
 }
 
-function getvalue(geto){
+function getvalue(geto) {
 	var allvalue = "";
-	for(var i=0;i<geto.options.length;i++){
+	for(var i=0;i<geto.options.length;i++) {
 		allvalue +=geto.options[i].value + ",";
 	}
 	return allvalue;
 }
 
-function moveAllOption1(e1, e2){
- try{
-  for(var i = 0;i < e1.options.length; i++){
-   var e = e1.options[i];
-   
-   e2.options.add(new Option(e.text, e.value));
-   e1.remove(i);
-   i = i - 1;
-  }
-  document.myform.msgto.value=getvalue(document.myform.list2);  
- }
- catch(e){ 
- }
+function moveAllOption1(e1, e2) {
+	try{
+		for(var i = 0;i < e1.options.length; i++) {
+			var e = e1.options[i];
+			e2.options.add(new Option(e.text, e.value));
+			e1.remove(i);
+			i = i - 1;
+		}
+		document.myform.msgto.value=getvalue(document.myform.list2);  
+	}
+	catch(e){}
 }
 
 
 function moveAllOption2(e1, e2){
- try{
-  for(var i = 0;i < e1.options.length; i++){
-   var e = e1.options[i];
-    e2.options.add(new Option(e.text, e.value));
-   e1.remove(i);
-   i = i - 1;
-   
-  }
-  document.myform.msgto.value=getvalue(document.myform.list2);
-  
- }
- catch(e){
-  
- }
+	try{
+		for(var i = 0;i < e1.options.length; i++){
+			var e = e1.options[i];
+			e2.options.add(new Option(e.text, e.value));
+			e1.remove(i);
+			i = i - 1;
+		}
+		document.myform.msgto.value=getvalue(document.myform.list2);
+	}
+	catch(e){}
 }
 -->
 </script>
@@ -190,23 +179,18 @@ function moveAllOption2(e1, e2){
 <?php 
 	$query = "select * from `number`";
 	$result = mysql_query( $query );
-	if( mysql_num_rows( $result ) < 1 )
-	{
+	if( mysql_num_rows( $result ) < 1 ) {
 		echo "<option> &nbsp;号码为空!></option>>";
-	}
-	else
-	{
+	} else {
 			$totalnum = mysql_num_rows($result);
 			
-			for( $i=0;$i <=$totalnum;$i++ )
-			{
+			for( $i=0;$i <=$totalnum;$i++ ) {
 				$info = mysql_fetch_array( $result );
-				if($info != "")
-				{
+				if($info != "") {
 					echo "<option value=".$info['num']."><font color=blue ><b>".$info['name']."</b></font></option><br>";
 				}
 			}
-	}//else
+	}		//else
 	mysql_close($member);
 
 ?>

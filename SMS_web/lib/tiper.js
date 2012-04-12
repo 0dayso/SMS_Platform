@@ -1,5 +1,4 @@
 
-
 function tiper(xoff, yoff, id) {
     this.xOffset = xoff;
     this.yOffset = yoff;
@@ -34,6 +33,5 @@ function tiper(xoff, yoff, id) {
 
         $('div#' + id).css("top", this.top + "px").css("left", this.left + "px");
     });
-
 };
 

@@ -24,8 +24,7 @@
 	session_start();
 ?>
 <?php
-if($_SESSION["login"] != "YES")
-{
+if($_SESSION["login"] != "YES") {
 	echo "<script languge=javascript> alert('您没有登录，无权访问，请先登录！');
 			location.href='index.php'</script>";
 }
@@ -74,8 +73,7 @@ function HaveSend(id) {
 	);
 };
 
-function AjaxDelete( table, id )
-{
+function AjaxDelete( table, id ) {
 	$('#send_delete'+id).html("waiting..."); 
 	$.post(
 	  'ajax_delete.php',
@@ -175,12 +173,10 @@ function AjaxDelete( table, id )
 				LIMIT $start_limit , $page_items ";
 	$result = mysql_query( $query );
 	$sum_rows = mysql_num_rows($result);
-	if($sum_rows < 1)
-	{
+	if($sum_rows < 1) {
 		echo "<tr class='b'><td align='center' colspan='4'>还没有任何短信!</td></tr>";
 	} else {
-		while( $info = mysql_fetch_array( $result ) )
-		{
+		while( $info = mysql_fetch_array( $result ) ) 	{
 			if($info != "") {
 				$FlagSend = "";
 				if( !$info['flagsend'] ) {			//`flagsend`为1时表示已发送

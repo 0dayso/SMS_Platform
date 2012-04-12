@@ -42,8 +42,7 @@ if($_SESSION["login"] != "YES")
 <script language="javascript" src="lib/jquery.js"></script>
 <script language="JavaScript" type="text/javascript">
 <!--
-function AjaxDelete( table, id )
-{
+function AjaxDelete( table, id ) {
 //$.get()方式：
 	//alert("get id:("+id+")");
 	$.post(
@@ -119,63 +118,63 @@ function gotoDetail(username)
   <!-- InstanceBeginEditable name="EditRegion1" --> 
 <?php require_once('connecting.php'); ?>
 <?php
-$cur_page_name = $_SERVER["PHP_SELF"];
-$SqlTable = "number";
+	$cur_page_name = $_SERVER["PHP_SELF"];
+	$SqlTable = "number";
 
-$current_page = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
+	$current_page = ( isset($_GET['page']) ) ? $_GET['page'] : 1;
 
-$start_limit = ( $current_page - 1 ) * $page_items;
+	$start_limit = ( $current_page - 1 ) * $page_items;
 
-$query = "select * from `$SqlTable` ORDER BY `idnum` DESC";
-$result = mysql_query( $query ) or die(mysql_error());
-$sum_rows_all = mysql_num_rows($result);
+	$query = "select * from `$SqlTable` ORDER BY `idnum` DESC";
+	$result = mysql_query( $query ) or die(mysql_error());
+	$sum_rows_all = mysql_num_rows($result);
 
-$tatal_pages = ceil( $sum_rows_all/$page_items );
+	$tatal_pages = ceil( $sum_rows_all/$page_items );
 
 ?>
 <?php
-		//首先判断用户时候已经登录。因为只有登录用户才能访问此页面。
-		//如果用户提交了删除留言的ID,在删除此留言
-		$delid = $_GET["delid"];
-		if($delid != "")
-		{
-			mysql_query("delete from `$SqlTable` where idnum = ".$delid);
-			echo "<script languge=javascript> alert('删除成功！');
-						location.href='mynumber.php'</script>";
-		} 
+	//首先判断用户时候已经登录。因为只有登录用户才能访问此页面。
+	//如果用户提交了删除留言的ID,在删除此留言
+	$delid = $_GET["delid"];
+	if($delid != "")
+	{
+		mysql_query("delete from `$SqlTable` where idnum = ".$delid);
+		echo "<script languge=javascript> alert('删除成功！');
+					location.href='mynumber.php'</script>";
+	} 
 ?>
 <?php
-		//首先判断用户时候已经登录。因为只有登录用户才能访问此页面。
-		//如果用户提交了删除留言的ID,在删除此留言
-		$delete = $_GET["delete"];
-		if($delete != "")
-		{
-			mysql_query("delete from `$SqlTable` where flag=0");
-			echo "<script languge=javascript> alert('删除成功！'); 
-						location.href='mynumber.php'</script>";
-		} 
+	//首先判断用户时候已经登录。因为只有登录用户才能访问此页面。
+	//如果用户提交了删除留言的ID,在删除此留言
+	$delete = $_GET["delete"];
+	if($delete != "")
+	{
+		mysql_query("delete from `$SqlTable` where flag=0");
+		echo "<script languge=javascript> alert('删除成功！'); 
+					location.href='mynumber.php'</script>";
+	} 
 ?>
 
 <?php
-		//清空表
-		$table = trim($_GET["table"]);
-		if($table != "") {
-			mysql_query( "TRUNCATE TABLE  `$table`;" ) or die(mysql_error());
-			echo "<script languge=javascript> alert('执行成功！'); 
-						location.href='$cur_page_name'</script>";
-		} 
+	//清空表
+	$table = trim($_GET["table"]);
+	if($table != "") {
+		mysql_query( "TRUNCATE TABLE  `$table`;" ) or die(mysql_error());
+		echo "<script languge=javascript> alert('执行成功！'); 
+					location.href='$cur_page_name'</script>";
+	} 
 ?>
 
   <table class=i_table cellSpacing=1 cellPadding=4 width="100%" align=center>
-              <TR>
-                <TD class=head colSpan=4>电话薄管理</TD>
-              </TR>
-            <TBODY id=cate_a0>
-              <TR class=c>
-                <td align="center">姓名</td>
-                <td align="center">号码</td>
-                <td align="center">操作</td>
-              </tr>
+	  <TR>
+		<TD class=head colSpan=4>电话薄管理</TD>
+	  </TR>
+	<TBODY id=cate_a0>
+	  <TR class=c>
+		<td align="center">姓名</td>
+		<td align="center">号码</td>
+		<td align="center">操作</td>
+	  </tr>
 
 
 <?php
